@@ -1,4 +1,4 @@
-const BankAccount = require('./bank')
+const BankAccount = require('./bankAccount')
 
 describe('bankAccount Class', ()=> {
     let bankAccount;
@@ -14,7 +14,7 @@ describe('bankAccount Class', ()=> {
 
     it('Should return a balance of 1000 after depositing one time with 1000', () => {
         bankAccount.deposit(1000, '10-01-23');
-        expect(bankAccount.transactions).toEqual([{credit: '1000.00', debit: '', date: '10/01/2023', balance: '1000.00'}]);
+        expect(bankAccount.transactions).toEqual([{credit: '1000.00', debit: '', date: new Date('2023-01-10T00:00:00.000Z'), balance: '1000.00'}]);
         expect(bankAccount.balance).toEqual(1000);
     });
 
@@ -22,8 +22,8 @@ describe('bankAccount Class', ()=> {
         bankAccount.deposit(1000.00, '10-01-23');
         bankAccount.deposit(2000.00, '13-01-23');
         expect(bankAccount.transactions).toEqual([
-            {credit: '2000.00', debit:'', date: '13/01/2023', balance: '3000.00'},
-            {credit: '1000.00', debit: '', date: '10/01/2023', balance: '1000.00'}]);
+            {credit: '2000.00', debit:'', date: new Date('2023-01-13T00:00:00.000Z'), balance: '3000.00'},
+            {credit: '1000.00', debit: '', date: new Date('2023-01-10T00:00:00.000Z'), balance: '1000.00'}]);
         expect(bankAccount.balance).toEqual(3000);
     });
 
@@ -32,9 +32,9 @@ describe('bankAccount Class', ()=> {
         bankAccount.deposit(2000, '13-01-23');
         bankAccount.withdraw(500, '14-01-23');
         expect(bankAccount.transactions).toEqual([
-            {credit: '', debit:'500.00', date: '14/01/2023', balance: '2500.00'},
-            {credit: '2000.00', debit:'', date: '13/01/2023', balance: '3000.00'}, 
-            {credit: '1000.00', debit: '', date: '10/01/2023', balance: '1000.00'}
+            {credit: '', debit:'500.00', date: new Date('2023-01-14T00:00:00.000Z'), balance: '2500.00'},
+            {credit: '2000.00', debit:'', date: new Date('2023-01-13T00:00:00.000Z'), balance: '3000.00'}, 
+            {credit: '1000.00', debit: '', date: new Date('2023-01-10T00:00:00.000Z'), balance: '1000.00'}
         ]);
         expect(bankAccount.balance).toEqual(2500.00);
     });

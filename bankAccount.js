@@ -23,16 +23,18 @@ class BankAccount {
         const formattedBalance = this.balance.toFixed(2)
 
         this.transactions.unshift({credit: formattedValue , debit: '', date: dateObject, balance: formattedBalance})
+        console.log('Deposit done')
     }
 
     withdraw(value, date){
         this.balance -= value;
 
         const dateObject = this.dateFormatter(date)
-        const formattedValue = value.toFixed(2).padStart(1).padEnd(1)
+        const formattedValue = value.toFixed(2)
         const formattedBalance = this.balance.toFixed(2)
 
         this.transactions.unshift({credit:'' , debit: formattedValue, date: dateObject , balance:formattedBalance})
+        console.log('Withdrawal done')
     }
 
     display(){
